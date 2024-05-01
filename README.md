@@ -1,6 +1,7 @@
 # Autocomplete Assignment
 
 ## Live Preview
+https://autocomplete-component-28.netlify.app/
 
 
 ## Features
