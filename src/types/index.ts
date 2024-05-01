@@ -5,5 +5,20 @@ export interface FetchProps {
 export interface FetcherResponse {
     status: number,
     message: string,
-    data?: any,
+    data?: AUTOCOMPLETE_API_RESPONSE,
+}
+
+interface Docs {
+    name: string;
+    _version_: number
+}
+
+export interface AUTOCOMPLETE_API_RESPONSE {
+    data: {
+        docs: Docs[]
+    };
+}
+
+export interface DebounceInternalParams {
+    apiUrl: string;
 }

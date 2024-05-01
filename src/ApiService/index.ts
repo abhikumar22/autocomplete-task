@@ -1,6 +1,6 @@
 import {
     FetchProps,
-    FetcherResponse
+    DebounceInternalParams
 } from '../types';
 
 /**
@@ -15,7 +15,7 @@ export const fetcher = ({
 }: FetchProps): Function => {
     let controller: AbortController | null = null;
 
-    return async function (params: any) {
+    return async function (params: DebounceInternalParams) {
         const { apiUrl } = params;
         // Create a new AbortController if useAbortController is true
         if (useAbortController) {
@@ -32,33 +32,33 @@ export const fetcher = ({
             return { status: 0, message: `URL is a required parameter !!!!` }
         }
 
-        let response: FetcherResponse;
         try {
             // Fetch data using the provided URL and AbortController's signal if useAbortController is true
-            let res: any;
+            let res: Response | undefined;
+
             if (useAbortController) {
                 res = await fetch(apiUrl, { signal: controller!.signal });
             } else {
                 res = await fetch(apiUrl);
             }
             res = await res.json();
-            response = {
+            return {
                 status: 1,
                 message: 'Data Fetched successfully',
                 data: res
             }
         } catch (e: any) {
+            /* any because, error can have many different params */
             // Handle fetch errors
             if ((e.name === 'AbortError' || e.code === 20)) {
                 return
             }
-            response = {
+            return {
                 status: 0,
-                message: `API call failed with error:: ${e.message}`
-            }
+                message: `API call failed with error:: ${e.message}`,
+                data: {}
+            };
         }
-
-        return response;
     }
 };
 

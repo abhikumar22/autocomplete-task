@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import HighlightedText from '../../components/HighlightedText';
 import { debounceFn } from '../../helpers';
 import { fetcher } from '../../ApiService';
@@ -79,6 +79,7 @@ const AutoComplete = ({
                 {loading && <span>Loading ......</span>}
             </div>
             <div>
+                {/* currRes type any because, it can have any inputs and hirercy, controlled by parent */}
                 {results && results.length > 0 && results.map((currRes: any) => {
                     const name = currRes[searchKey];
                     return (

@@ -11,9 +11,9 @@ interface DebounceFunctionParams {
  */
 
 export const debounceFn = ({ fn, delay }: DebounceFunctionParams) => {
-    let timer: any = null;
+    let timer: ReturnType<typeof setTimeout>;
     return function (this: any) {
-        if (timer) clearTimeout(timer);
+        if (!!timer) clearTimeout(timer);
         let context = this;
         timer = setTimeout(() => {
             fn.call(context, arguments[0]);

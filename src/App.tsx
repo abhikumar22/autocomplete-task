@@ -1,4 +1,6 @@
 import { AUTO_COMPLETE_ENDPOINT } from './constants/urls';
+import { AUTOCOMPLETE_API_RESPONSE } from './types';
+
 import AutoComplete from './components/AutoComplete';
 import './App.css';
 
@@ -12,7 +14,7 @@ function App() {
         debounceInterval={300}
         placeHolder={"Enter Name"}
         searchKey={'name'}
-        apiResponseDataModifier={(data: any) => {          
+        apiResponseDataModifier={(data: AUTOCOMPLETE_API_RESPONSE) => {
           return data.data.docs
         }}
         isAbortPendingRequests={true}
