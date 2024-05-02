@@ -23,4 +23,5 @@ https://autocomplete-component-28.netlify.app/
 |  apiEndpoint    |  -        |    false      |  apiurl for getting results for autocomplete component        |string
 | placeHolder    |   Enter Text       | true         | text for input placeholder         |string
 | searchKey    | name         |    true      | key that needs to be searched in the json as results         | string
-| apiResponseDataModifier    | -         |    false      | massager fn, which takes response of api and give the iterable list         | array<objects>
+| apiResponseDataModifier    | -         |    false      | massager fn, which takes response of api and give the iterable list         | function
+| isAbortPendingRequests    | false         |    true      | explicitily cancel earlier pending request, to save the no of api calls         | function
